@@ -250,19 +250,18 @@ backdrop-filter: blur(10px);
   }
 }
 
-/* @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .titl {
     position: absolute;
     top: 50px; /* измените на ваше предпочтение */
     left: 45%; /* половина ширины контейнера */
     transform: translateX(-50%); /* сдвиг влево на половину ширины изображения */
-    font-size: 5rem;
+    font-size: 4rem;
   }
   .container {
     top: 10%;
   }
 }
-*/
 @media only screen and (max-width: 600px) {
   body {
     background-position: center;
