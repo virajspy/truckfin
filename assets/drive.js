@@ -121,23 +121,33 @@ function calc_func() {
           document.getElementsByClassName("modal-main-con")[0].innerHTML = "There was an error in calculating ETA.";
         }
       } else {
-        const now = new Date();
-        const etTime = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
+  const now = new Date();
+  const etTime = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
 
-        const remain = Number(document.getElementById("remain_time").value);
-        const st = new Date(etTime);
+  const remain = Number(document.getElementById("remain_time").value);
+  const st = new Date(etTime);
 
-        const shiftRestartTime = st.getTime() + remain * 3600000 + 10 * 3600000; // Shift Restart Time = Current Time + Remaining HoS + 10 hours break
-        const adjustedTravelTime = tm - remain * 3600000; // Adjusted travel time = Travel time - Remaining HoS
+  const shiftRestartTime = st.getTime() + remain * 3600000 + 10 * 3600000; // Shift Restart Time = Current Time + Remaining HoS + 10 hours break
+  let adjustedTravelTime = tm - remain * 3600000; // Adjusted travel time = Travel time - Remaining HoS
 
-        if (remain >= tm / 3600000) {
-          ETA = st.getTime() + tm;
-        } else {
-          ETA = shiftRestartTime + adjustedTravelTime;
-          if (tm > 8 * 3600000) {
-            ETA += 30 * 60000;
-          }
+  if (remain >= tm / 3600000) {
+    ETA = st.getTime() + tm;
+  } else {
+    ETA = shiftRestartTime;
+    while (adjustedTravelTime > 0) {
+      if (adjustedTravelTime > 11 * 3600000) {
+        ETA += 11 * 3600000 + 10 * 3600000 + 30 * 60000; // Add 10 hours and 30 minutes for every 11 hours of travel time
+        adjustedTravelTime -= 11 * 3600000;
+      } else {
+        ETA += adjustedTravelTime;
+        if (adjustedTravelTime > 8 * 3600000) {
+          ETA += 30 * 60000;
         }
+        adjustedTravelTime = 0;
+      }
+    }
+  }
+
 
         console.log(ETA);
         if (appoint_time.getTime() >= ETA) {
