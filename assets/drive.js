@@ -25,12 +25,12 @@ function initAutocomplete() {
   autocomplete1 = new google.maps.places.Autocomplete(address1Field, {
     componentRestrictions: { country: ["us"] },
     fields: ["address_components", "geometry"],
-    types: ["address", "regions"],
+    types: ["address"],
   });
   autocomplete2 = new google.maps.places.Autocomplete(address2Field, {
     componentRestrictions: { country: ["us"] },
     fields: ["address_components", "geometry"],
-    types: ["address", "regions"],
+    types: ["address"],
   });
   address1Field.focus();
 }
