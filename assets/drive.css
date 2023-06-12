@@ -253,7 +253,7 @@ backdrop-filter: blur(10px);
 @media only screen and (max-width: 768px) {
   .titl {
     position: absolute;
-    top: 50%; /* половина высоты контейнера */
+    top: 10%; /* половина высоты контейнера */
     left: 50%; /* половина ширины контейнера */
     transform: translate(-50%, -50%); /* сдвиг на половину ширины и высоты заголовка */
     font-size: 5rem;
