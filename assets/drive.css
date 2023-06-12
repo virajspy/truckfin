@@ -70,9 +70,9 @@ body {
 @media (max-width: 600px) {
   .responsive-image {
     position: absolute;
-    width: 10%;
+    width: 15%;
     top: 5%; /* измените на ваше предпочтение */
-    left: 50%; /* половина ширины контейнера */
+    right: 5%; /* половина ширины контейнера */
     transform: translateX(-50%); /* сдвиг влево на половину ширины изображения */
   }
 }
