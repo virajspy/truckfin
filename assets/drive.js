@@ -113,8 +113,8 @@ function calc_func() {
             document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
             document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
               "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
-              "Travel Time Driving: " + travelTimeDriving + "<br>" +
-              "Total Travel Time (including breaks): " + totalTravelTime;
+              "Travel time driving: " + travelTimeDriving + "<br>" +
+              "Total travel Time (including breaks): " + totalTravelTime;
           }
         } else {
           document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Error";
@@ -157,8 +157,8 @@ function calc_func() {
           document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
           document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
             "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
-            "Travel Time Driving: " + travelTimeDriving + "<br>" +
-            "Total Travel Time (including breaks): " + totalTravelTime;
+            "Travel time driving: " + travelTimeDriving + "<br>" +
+            "Total travel Time (including breaks): " + totalTravelTime;
         }
       }
 
