@@ -58,6 +58,12 @@ body {
   text-shadow: 1px 1px black, -1px -1px white;
 }
 
+.responsive-image {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
 .date {
   float: right;
   padding-right: 3rem;
@@ -130,13 +136,6 @@ body {
   color: black !important;
   font-size: 13px;
 }
-
-.responsive-image {
-  max-width: 150px;
-  width: 100%;
-  height: auto;
-}
-
 
 /* ========modal======== */
 .res {
