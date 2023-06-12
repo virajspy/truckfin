@@ -67,6 +67,14 @@ body {
   height: auto;
 }
 
+@media (max-width: 600px) {
+  .responsive-image {
+    position: absolute;
+    top: 50px; /* измените на ваше предпочтение */
+    right: 50px; /* измените на ваше предпочтение */
+  }
+}
+
 
 .date {
   float: right;
