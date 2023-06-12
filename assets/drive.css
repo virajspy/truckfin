@@ -253,11 +253,13 @@ backdrop-filter: blur(10px);
 @media only screen and (max-width: 768px) {
   .titl {
     position: absolute;
-    top: 50px; /* измените на ваше предпочтение */
+    top: 50%; /* половина высоты контейнера */
     left: 50%; /* половина ширины контейнера */
-    transform: translateX(-50%); /* сдвиг влево на половину ширины изображения */
+    transform: translate(-50%, -50%); /* сдвиг на половину ширины и высоты заголовка */
     font-size: 5rem;
+    text-align: center; /* центрирование текста */
   }
+}
   .container {
     top: 10%;
   }
