@@ -131,6 +131,13 @@ body {
   font-size: 13px;
 }
 
+.responsive-image {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
+
 /* ========modal======== */
 .res {
   display: none; /* Hidden by default */
