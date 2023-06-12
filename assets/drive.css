@@ -134,6 +134,7 @@ body {
   backdrop-filter: blur(20px);
   border-radius: 5px;
   padding: 1.7rem 0;
+  z-index: 10;
 }
 
 .pac-item span {
