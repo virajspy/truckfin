@@ -186,33 +186,18 @@ alert("There was an error in calculating route. Please try again.");
 }
 
 span.onclick = function() {
-modal.firstChild.nextSibling.style.opacity = '0';
-  modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
-  setTimeout(() => {
-    modal.style.display = "none";
-    modal.firstChild.nextSibling.style.opacity = '1';
-  }, 500);
+  modal.style.display = "none";
+}
+
+con.onclick = function() {
+  modal.style.display = "none";
 }
 
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.firstChild.nextSibling.style.opacity = '0';
-    modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
-    setTimeout(() => {
-      modal.style.display = "none";
-      modal.firstChild.nextSibling.style.opacity = '1';
-    }, 500);
-  }
-
-con.onclick = function() {
-  modal.firstChild.nextSibling.style.opacity = '0';
-  modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
-  setTimeout(() => {
     modal.style.display = "none";
-    modal.firstChild.nextSibling.style.opacity = '1';
-  }, 500);
+  }
 }
-
 function change() {
   let select_field = document.getElementById("time_format").value;
   $("#remain_time").remove();
