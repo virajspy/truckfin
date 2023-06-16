@@ -25,7 +25,7 @@ function initAutocomplete() {
   autocomplete1 = new google.maps.places.Autocomplete(address1Field, {
     componentRestrictions: { country: ["us"] },
     fields: ["address_components", "geometry"],
-
+   
   });
   autocomplete2 = new google.maps.places.Autocomplete(address2Field, {
     componentRestrictions: { country: ["us"] },
@@ -63,8 +63,6 @@ function calc_func() {
     if (status === 'OK') {
       const route = response.routes[0];
       const duration = route.legs[0].duration.text;
-      const distanceInMeters = route.legs[0].distance.value; // get distance in meters
-      const distanceInMiles = distanceInMeters * 0.000621371;  // convert meters to miles
       console.log(`Duration: ${duration}`);
       const appoint_time = new Date(address3Field.value);
 
@@ -102,8 +100,7 @@ function calc_func() {
             const sh = new Date(ETA);
 
             document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: On Time";
-            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() +
-              "<br> Distance: " + distanceInMiles.toFixed(2) + " miles"; // add distance to the output
+            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
           } else {
             const sh = new Date(ETA);
             const diffMilliseconds = ETA - appoint_time.getTime();
@@ -117,8 +114,7 @@ function calc_func() {
             document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
               "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
               "Travel time driving: " + travelTimeDriving + "<br>" +
-              "Total travel Time (including breaks): " + totalTravelTime + "<br>" +
-              "Distance: " + distanceInMiles.toFixed(2) + " miles"; // add distance to the output
+              "Total travel Time (including breaks): " + totalTravelTime;
           }
         } else {
           document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Error";
@@ -139,50 +135,49 @@ function calc_func() {
   } else {
     ETA = shiftRestartTime;
     while (adjustedTravelTime > 0) {
-      if (adjustedTravelTime <= 8 * 3600000) {
-        ETA += adjustedTravelTime;
-        break;
-      } else {
-        ETA += 11 * 3600000;
+      if (adjustedTravelTime > 11 * 3600000) {
+        ETA += 11 * 3600000 + 10 * 3600000 + 30 * 60000; // Add 10 hours and 30 minutes for every 11 hours of travel time
         adjustedTravelTime -= 11 * 3600000;
+      } else {
+        ETA += adjustedTravelTime;
+        if (adjustedTravelTime > 8 * 3600000) {
+          ETA += 30 * 60000;
+        }
+        adjustedTravelTime = 0;
       }
     }
   }
 
-  if (!isNaN(ETA)) {
-    if (appoint_time.getTime() >= ETA) {
-      const sh = new Date(ETA);
 
-      document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: On Time";
-      document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() +
-        "<br> Distance: " + distanceInMiles.toFixed(2) + " miles"; // add distance to the output
+        console.log(ETA);
+        if (appoint_time.getTime() >= ETA) {
+          const sh = new Date(ETA);
+
+          document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: On Time";
+          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
+        } else {
+          const sh = new Date(ETA);
+          const diffMilliseconds = ETA - appoint_time.getTime();
+          const hoursLate = Math.floor(diffMilliseconds / 3600000);
+          const minutesLate = Math.floor((diffMilliseconds % 3600000) / 60000);
+
+          const travelTimeDriving = duration;
+          const totalTravelTime = Math.floor((ETA - st.getTime()) / 3600000) + " hours and " + Math.floor(((ETA - st.getTime()) % 3600000) / 60000) + " minutes";
+
+          document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
+          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
+            "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
+            "Travel time driving: " + travelTimeDriving + "<br>" +
+            "Total travel Time (including breaks): " + totalTravelTime;
+        }
+      }
+
+      modal.style.display = "block";
+      modal.firstChild.nextSibling.classList.add("zoom-in");
     } else {
-      const sh = new Date(ETA);
-      const diffMilliseconds = ETA - appoint_time.getTime();
-      const hoursLate = Math.floor(diffMilliseconds / 3600000);
-      const minutesLate = Math.floor((diffMilliseconds % 3600000) / 60000);
-
-      const travelTimeDriving = duration;
-      const totalTravelTime = Math.floor((ETA - st.getTime()) / 3600000) + " hours and " + Math.floor(((ETA - st.getTime()) % 3600000) / 60000) + " minutes";
-
-      document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
-      document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
-        "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
-        "Travel time driving: " + travelTimeDriving + "<br>" +
-        "Total travel Time (including breaks): " + totalTravelTime + "<br>" +
-        "Distance: " + distanceInMiles.toFixed(2) + " miles"; // add distance to the output
+      window.alert('Directions request failed due to ' + status);
     }
-  } else {
-    document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Error";
-    document.getElementsByClassName("modal-main-con")[0].innerHTML = "There was an error in calculating ETA.";
-  }
-}
-modal.firstChild.nextSibling.classList.add("zoom-in");
-modal.style.display = "block";
-} else {
-alert("There was an error in calculating route. Please try again.");
-}
-});
+  });
 }
 
 span.onclick = function() {
@@ -198,6 +193,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 function change() {
   let select_field = document.getElementById("time_format").value;
   $("#remain_time").remove();
@@ -206,4 +202,4 @@ function change() {
   } else {
     $("#time_format").after('<input type="text" id="remain_time" />');
   }
-
+}
