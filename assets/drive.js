@@ -186,17 +186,17 @@ alert("There was an error in calculating route. Please try again.");
 }
 
 span.onclick = function() {
-modal.style.display = "none";
+modal.style.display = "block";
 }
 
 window.onclick = function(event) {
 if (event.target == modal) {
-modal.style.display = "none";
+modal.style.display = "block";
 }
 }
 
 con.onclick = function() {
-modal.style.display = "none";
+modal.style.display = "block";
 }
 
 function change() {
