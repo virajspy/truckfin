@@ -100,7 +100,7 @@ function calc_func() {
             const sh = new Date(ETA);
 
             document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: On Time";
-            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
+            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
           } else {
             const sh = new Date(ETA);
             const diffMilliseconds = ETA - appoint_time.getTime();
@@ -111,7 +111,7 @@ function calc_func() {
             const totalTravelTime = Math.floor((ETA - st.getTime()) / 3600000) + " hours and " + Math.floor(((ETA - st.getTime()) % 3600000) / 60000) + " minutes";
 
             document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
-            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
+            document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
               "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
               "Travel time driving: " + travelTimeDriving + "<br>" +
               "Total travel Time (including breaks): " + totalTravelTime;
@@ -154,7 +154,7 @@ function calc_func() {
           const sh = new Date(ETA);
 
           document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: On Time";
-          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
+          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString();
         } else {
           const sh = new Date(ETA);
           const diffMilliseconds = ETA - appoint_time.getTime();
@@ -165,7 +165,7 @@ function calc_func() {
           const totalTravelTime = Math.floor((ETA - st.getTime()) / 3600000) + " hours and " + Math.floor(((ETA - st.getTime()) % 3600000) / 60000) + " minutes";
 
           document.getElementsByClassName("modal-header-con")[0].innerHTML = "Status: Late";
-          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
+          document.getElementsByClassName("modal-main-con")[0].innerHTML = "ETA (EST) : " + sh.toLocaleDateString() + " " + sh.toLocaleTimeString() + ".<br>" +
             "The driver is going to be " + hoursLate + " hours and " + minutesLate + " minutes late.<br>" +
             "Travel time driving: " + travelTimeDriving + "<br>" +
             "Total travel Time (including breaks): " + totalTravelTime;
