@@ -221,4 +221,4 @@ function change() {
   } else {
     $("#time_format").after('<input type="text" id="remain_time" />');
   }
-}
+
