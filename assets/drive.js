@@ -177,6 +177,7 @@ function calc_func() {
     document.getElementsByClassName("modal-main-con")[0].innerHTML = "There was an error in calculating ETA.";
   }
 }
+modal.firstChild.nextSibling.classList.add("zoom-in");
 modal.style.display = "block";
 } else {
 alert("There was an error in calculating route. Please try again.");
