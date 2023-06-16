@@ -181,16 +181,31 @@ function calc_func() {
 }
 
 span.onclick = function() {
-  modal.style.display = "none";
+  modal.firstChild.nextSibling.style.opacity = '0';
+  modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
+  setTimeout(() => {
+    modal.style.display = "none";
+    modal.firstChild.nextSibling.style.opacity = '1';
+  }, 500);
 }
 
 con.onclick = function() {
-  modal.style.display = "none";
+  modal.firstChild.nextSibling.style.opacity = '0';
+  modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
+  setTimeout(() => {
+    modal.style.display = "none";
+    modal.firstChild.nextSibling.style.opacity = '1';
+  }, 500);
 }
 
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modal.firstChild.nextSibling.style.opacity = '0';
+    modal.firstChild.nextSibling.style.transition = 'opacity 0.5s';
+    setTimeout(() => {
+      modal.style.display = "none";
+      modal.firstChild.nextSibling.style.opacity = '1';
+    }, 500);
   }
 }
 
